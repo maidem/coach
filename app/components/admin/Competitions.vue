@@ -93,7 +93,7 @@
           <!-- PDF in edit mode -->
           <div
             class="border-2 border-dashed border-ink-300 rounded-xl p-3 text-center cursor-pointer hover:border-[color:var(--color-lime-vivid)] transition text-sm"
-            @click="editPdfInputRef?.click()"
+            @click="openEditPdf"
           >
             <span v-if="editForm.ausschreibung"
               >📄 PDF gespeichert – klicken zum Ersetzen
@@ -107,13 +107,7 @@
             </span>
             <span v-else class="text-ink-400">📎 PDF hochladen (optional)</span>
           </div>
-          <input
-            ref="editPdfInputRef"
-            type="file"
-            accept="application/pdf"
-            class="hidden"
-            @change="onEditFileChange"
-          />
+
           <div class="flex gap-2">
             <button
               @click="saveEdit(comp.id)"
@@ -175,6 +169,15 @@
       Keine Wettkämpfe vorhanden
     </div>
   </div>
+
+  <!-- Global hidden input for edit PDF upload (outside v-for) -->
+  <input
+    ref="editPdfInputRef"
+    type="file"
+    accept="application/pdf"
+    class="hidden"
+    @change="onEditFileChange"
+  />
 </template>
 
 <script setup lang="ts">
@@ -256,6 +259,13 @@ const onEditFileChange = async (e: Event) => {
     editForm.value.ausschreibung = await readPdf(file);
   } catch (err: any) {
     error.value = err.message;
+  }
+};
+
+const openEditPdf = () => {
+  if (editPdfInputRef.value) {
+    editPdfInputRef.value.value = "";
+    editPdfInputRef.value.click();
   }
 };
 
