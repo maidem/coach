@@ -100,6 +100,17 @@ function migrate(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_athlete_equipment_equipment ON athlete_equipment(equipment_id);
   `);
 
+  // Idempotent column additions for competitions
+  for (const col of [
+    "ALTER TABLE competitions ADD COLUMN ausschreibung TEXT",
+  ]) {
+    try {
+      db.exec(col);
+    } catch {
+      /* column already exists */
+    }
+  }
+
   // Idempotent column additions for athletes
   for (const col of [
     "ALTER TABLE athletes ADD COLUMN first_name TEXT NOT NULL DEFAULT ''",

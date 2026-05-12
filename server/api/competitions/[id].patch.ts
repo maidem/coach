@@ -23,12 +23,13 @@ export default defineEventHandler(async (event): Promise<Competition> => {
   const db = useDb();
   const competition = db
     .prepare(
-      "UPDATE competitions SET name = ?, tournament_link = ?, date = ? WHERE id = ? RETURNING *",
+      "UPDATE competitions SET name = ?, tournament_link = ?, date = ?, ausschreibung = ? WHERE id = ? RETURNING *",
     )
     .get(
       body.name.trim(),
       body.tournament_link || null,
       body.date || null,
+      body.ausschreibung !== undefined ? body.ausschreibung : null,
       id,
     ) as Competition | undefined;
 

@@ -9,7 +9,9 @@
         >
           ← Zurück
         </NuxtLink>
-        <h1 class="text-xl sm:text-3xl font-bold text-gray-900">Admin – Verwaltung</h1>
+        <h1 class="text-xl sm:text-3xl font-bold text-gray-900">
+          Admin – Verwaltung
+        </h1>
       </div>
       <div class="flex flex-wrap gap-2 mb-6 overflow-x-auto">
         <button

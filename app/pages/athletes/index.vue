@@ -40,17 +40,16 @@
           class="bg-white rounded-lg shadow hover:shadow-lg cursor-pointer transition p-4 border-l-4 border-[color:var(--color-lime-vivid)]"
         >
           <div class="flex items-center gap-3">
-            <img
-              v-if="athlete.photo"
-              :src="athlete.photo"
-              class="h-10 w-10 rounded-full object-cover flex-shrink-0"
-              alt=""
-            />
             <div
-              v-else
-              class="h-10 w-10 rounded-full bg-ink-100 flex items-center justify-center text-lg flex-shrink-0"
+              class="flex-shrink-0 w-10 h-[52px] rounded overflow-hidden bg-ink-100 flex items-center justify-center"
             >
-              👤
+              <img
+                v-if="athlete.photo"
+                :src="athlete.photo"
+                class="w-full h-full object-cover object-top"
+                alt=""
+              />
+              <span v-else class="text-lg">👤</span>
             </div>
             <h3 class="font-semibold text-lg text-ink-900">
               {{ athlete.first_name }} {{ athlete.last_name }}

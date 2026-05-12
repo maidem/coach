@@ -15,12 +15,13 @@ export default defineEventHandler(async (event): Promise<Competition> => {
   const db = useDb();
   const competition = db
     .prepare(
-      "INSERT INTO competitions (name, tournament_link, date) VALUES (?, ?, ?) RETURNING *",
+      "INSERT INTO competitions (name, tournament_link, date, ausschreibung) VALUES (?, ?, ?, ?) RETURNING *",
     )
     .get(
       body.name.trim(),
       body.tournament_link || null,
       body.date || null,
+      body.ausschreibung || null,
     ) as Competition;
 
   return competition;

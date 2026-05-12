@@ -26,6 +26,7 @@ export interface Competition {
   name: string;
   tournament_link: string | null;
   date?: string; // ISO date YYYY-MM-DD
+  ausschreibung?: string | null; // base64 PDF data URI
   created_at?: string;
 }
 
