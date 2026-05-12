@@ -28,13 +28,13 @@ export default defineNuxtConfig({
     // Random secret for signing the admin session cookie.
     sessionSecret: process.env.SESSION_SECRET || "",
     public: {
-      appName: "Trainerbelegungsplan",
+      appName: "Coach Manager",
     },
   },
 
   app: {
     head: {
-      title: "Trainerbelegungsplan",
+      title: "Coach Manager",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
